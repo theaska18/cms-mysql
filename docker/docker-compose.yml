@@ -2,7 +2,7 @@ version: "3.3"
 services:
   mysql:
     image: theaska18/APP_NAME:MODE
-    container_name: mysql_MODE         # Password untuk user biasa
+    container_name: cms_mysql_MODE         # Password untuk user biasa
     ports:
       - PORT:3306
     volumes:

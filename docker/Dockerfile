@@ -7,6 +7,8 @@ ENV MYSQL_ROOT_PASSWORD=1234
 ENV MYSQL_USER=theaska
 ENV MYSQL_PASSWORD=1234
 
+RUN echo "[mysqld]\ndefault-authentication-plugin=mysql_native_password" > /etc/mysql/my.cnf
+
 # Expose the default MySQL port
 EXPOSE 3306
 
