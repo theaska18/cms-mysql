@@ -9,6 +9,9 @@ ENV MYSQL_PASSWORD=1234
 
 RUN echo "[mysqld]\ndefault-authentication-plugin=mysql_native_password" > /etc/mysql/conf.d/custom.cnf
 
+COPY docker/init.sql /docker-entrypoint-initdb.d/
+
+
 
 # Expose the default MySQL port
 EXPOSE 3306
