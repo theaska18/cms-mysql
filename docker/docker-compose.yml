@@ -1,19 +1,15 @@
 version: "3.3"
 services:
   mysql:
-    image: theaska18
-    container_name: mysql_MODE
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234      # Password untuk root
-      MYSQL_USER: theaska                       # Username untuk user biasa
-      MYSQL_PASSWORD: 1234           # Password untuk user biasa
+    image: theaska18/APP_NAME:MODE
+    container_name: mysql_MODE         # Password untuk user biasa
     ports:
-      - "3306:3306"
+      - PORT:3306
     volumes:
       - ./mysql-data:/var/lib/mysql         # Menyimpan data MySQL ke folder lokal
     networks:
-      - cms-development
+      - cms-MODE
     restart: always
 networks:
-  cms-development:
+  cms-MODE:
     external: true

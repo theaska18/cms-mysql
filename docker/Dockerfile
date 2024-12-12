@@ -1,33 +1,14 @@
-# Gunakan image resmi PHP dengan Apache
-#FROM php:8.0-apache
-FROM arm64v8/php:7.2-apache
-RUN ls -l
-# Instal ekstensi PHP yang dibutuhkan CodeIgniter 
-RUN docker-php-ext-install mysqli pdo pdo_mysql
-#RUN apt-get update
-RUN ls -l
+# Use the official MySQL 8.0 image from Docker Hub
+FROM mysql:8.0
 
-# Salin file konfigurasi
-COPY docker/php.ini /usr/local/etc/php/
-COPY docker/sites.conf /etc/apache2/sites-available/000-default.conf
+# Set environment variables for MySQL
+# Only set the root password and user password (no default database)
+ENV MYSQL_ROOT_PASSWORD=1234
+ENV MYSQL_USER=theaska
+ENV MYSQL_PASSWORD=1234
 
-# Aktifkan mod_rewrite untuk Apache
-RUN a2enmod rewrite
+# Expose the default MySQL port
+EXPOSE 3306
 
-# Set direktori kerja
-WORKDIR /var/www/html
-
-# Pastikan folder html ada dan buat jika belum ada
-RUN mkdir -p /var/www/html
-
-# Salin aplikasi ke dalam container
-COPY app/ /var/www/html/
-
-# Memeriksa apakah file sudah disalin ke /var/www/html/
-RUN ls -l /var/www/html/
-
-# Set hak akses
-RUN chown -R www-data:www-data /var/www/html
-
-# Expose port 80 untuk akses HTTP
-EXPOSE 80
+# The official MySQL image will automatically start the MySQL server when the container starts
+CMD ["mysqld"]

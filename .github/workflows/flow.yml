@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      APP_NAME: mysql
+      APP_NAME: cms-mysql
       PROJECT_DIR: /home/appsdocker/mysql
     steps:
       - uses: actions/checkout@v4
